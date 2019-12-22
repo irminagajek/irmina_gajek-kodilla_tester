@@ -1,9 +1,9 @@
 package com.kodilla.inheritance.homework;
 
 public class OperatingSystem {
-    private int year; //informacja o roku wydania
+    private int year;
 
-public OperatingSystem(int year) {//konstruktor przyjmujący rok wydawania
+public OperatingSystem(int year) {
     this.year = year;
     }
 
@@ -12,12 +12,12 @@ public OperatingSystem(int year) {//konstruktor przyjmujący rok wydawania
     }
 
     public void turnOnSystem() {
-    System.out.println("Operating System is turned on."); //metoda uruchamiająca system
+    System.out.println("Operating System is turned on.");
     }
 
     public void turnOffSystem() {
-System.out.println("Operating System is turned off."); //metoda wyłączająca system
-    }
+System.out.println("Operating System is turned off.");
+}
 
     public void startSystem() {
         System.out.println("System started.");

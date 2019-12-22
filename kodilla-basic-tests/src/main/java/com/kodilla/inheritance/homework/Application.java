@@ -4,7 +4,7 @@ public class Application {
 
     public static void main(String[] args) {
         OperatingSystem operatingSystem = new OperatingSystem(2000);
-        operatingSystem.turnOnSystem(); //metoda z klasy OS
+        operatingSystem.turnOnSystem();
 
         Windows7 windows7 = new Windows7(2009);
         windows7.displayReleaseYear();
