@@ -20,5 +20,13 @@ public class Application {
         } else {
             System.out.println("Metoda subtract nie działa poprawnie dla liczb " + a + " i " + b);
         }
+
+        int squaringResult = calculator.squaring(a);
+        boolean isItCorrect = ResultChecker.assertEquals(25, squaringResult);
+        if (isItCorrect) {
+            System.out.println("Metoda squaring działa poprawnie dla liczby " + a);
+        } else {
+            System.out.println("Metoda nie działa poprawnie dla liczby " + a);
+        }
     }
 }
