@@ -14,4 +14,4 @@ public class Windows7 extends OperatingSystem {
     public void startSystem() {
         System.out.println("System 7 started.");
     }
-        }
+}
