@@ -2,18 +2,18 @@ package com.kodilla.abstracts.homework;
 
 public class Person {
     String firstName;
-    String job;
+    Job job;
     int age;
 
-    public Person(String firstName, String job, int age ) {
+    public Person(String firstName, Job job, int age ) {
         this.firstName = firstName;
         this.job = job;
-        this.age= age;
+        this.age = age;
     }
 
     public static void main(String[] args) {
         Dietician dietician = new Dietician();
-    Person Janek = new Person("Janek", "dietetyk ", 36);
-    System.out.println(Janek.firstName + " " + Janek.age + " " + Janek.job + dietician.getResponsibilities());
+    Person Janek = new Person("Janek", dietician, 36);
+    System.out.println(Janek.firstName + " " + Janek.age + " " + Janek.job.getResponsibilities());
     }
 }
