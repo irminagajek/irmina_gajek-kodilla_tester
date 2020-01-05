@@ -7,24 +7,22 @@ public class Skoda implements Car {
 
    public Skoda(int speed, int increasedSpeed, int decreasedSpeed) {
        this.speed = speed;
-       this. increasedSpeed = increasedSpeed;
+       this.increasedSpeed = increasedSpeed;
        this.decreasedSpeed = decreasedSpeed;
    }
 
     @Override
-    public int getSpeed() {
-        return speed;
+    public int getSpeed(int numberOfIncreases, int numberOfDecreases) {
+        return speed + numberOfIncreases * increasedSpeed - numberOfDecreases * decreasedSpeed;
     }
 
     @Override
     public int increaseSpeed() {
-
-        return increasedSpeed;
+        return speed + increasedSpeed;
     }
 
     @Override
     public int decreaseSpeed() {
-
-        return decreasedSpeed;
+        return speed + decreasedSpeed;
     }
 }
