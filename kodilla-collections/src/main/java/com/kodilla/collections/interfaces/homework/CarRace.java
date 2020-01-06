@@ -13,6 +13,6 @@ public class CarRace {
     }
 
     private static void doRace(Car car) {
-        System.out.println(car.getSpeed(3, 2));
+        System.out.println(car.getSpeed());
     }
 }

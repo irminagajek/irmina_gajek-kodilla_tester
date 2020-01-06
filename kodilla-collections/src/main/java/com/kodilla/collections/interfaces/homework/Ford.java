@@ -12,17 +12,17 @@ public class Ford implements Car {
     }
 
     @Override
-    public int getSpeed(int numberOfIncreases, int numberOfDecreases) {
-        return speed + numberOfIncreases * increasedSpeed - numberOfDecreases * decreasedSpeed;
+    public int getSpeed() {
+        return speed + increaseSpeed() - decreaseSpeed();
     }
 
     @Override
     public int increaseSpeed() {
-        return speed + increasedSpeed;
+        return speed + 3 * increasedSpeed;
     }
 
     @Override
     public int decreaseSpeed() {
-        return speed + decreasedSpeed;
+        return speed + 2 * decreasedSpeed;
     }
 }
