@@ -1,19 +1,31 @@
 package com.kodilla.collections.adv.maps.homework;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class School {
+    public String name;
 
-    public static void main(String[] args) {
+    List<Integer> schoolClasses = new ArrayList<>();
 
-        List<Integer> schoolClass = new ArrayList<>();
-        schoolClass.add(new Integer(35);
-        schoolClass.add(new Integer(40);
-        schoolClass.add(new Integer(20);
-        schoolClass.add(new Integer(26);
-        schoolClass.add(new Integer(28);
-        schoolClass.add(new Integer(22);
-        schoolClass.add(new Integer(31);
+    public School(String schoolname, int[] students) {
+        this.name = schoolname;
+
+        for (int n = 0; n < students.length; n++) {
+            schoolClasses.add(Array.getInt(students, n));
+        }
+    }
+
+    public int getTotalStudents() {
+            int sum = 0;
+            for (int n = 0; n < schoolClasses.size(); n++) {
+                sum = sum + schoolClasses.get(n);
+            }
+            return sum;
+        }
+
+    public String schoolName() {
+        return this.name;
     }
 }

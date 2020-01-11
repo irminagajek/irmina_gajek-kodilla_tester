@@ -29,8 +29,7 @@ public class Principal {
 
     @Override
     public String toString() {
-        return "Principal{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Principal " +
+                "name: " + name + ",";
     }
 }
