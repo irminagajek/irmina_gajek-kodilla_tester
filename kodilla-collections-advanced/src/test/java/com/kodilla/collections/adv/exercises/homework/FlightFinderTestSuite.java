@@ -2,63 +2,116 @@ package com.kodilla.collections.adv.exercises.homework;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 class FlightFinderTestSuite {
 
     @Test
-    public void testFindFlightsTo() {
+    public void testFindFlightsToDUB() {
+        //given
+        FlightFinder flightFinder = new FlightFinder();
+        //when
+        List<Flight> foundFlights = flightFinder.findFlightsTo("DUB");
+        //then
+        assertNotEquals(0, foundFlights.size());
+        for (Flight flight : foundFlights) {
+            assertEquals("DUB", flight.arrival);
+        }
+    }
 
-        Flight flight = new Flight("Warsaw", "DUB");
-        assertEquals("DUB", flight.getArrival());
+    @Test
+    public void testFindFlightsToFCO() {
+        //given
+        FlightFinder flightFinder = new FlightFinder();
+        //when
+        List<Flight> foundFlights = flightFinder.findFlightsTo("FCO");
+        //then
+        assertNotEquals(0, foundFlights.size());
+        for (Flight flight : foundFlights) {
+            assertEquals("FCO", flight.arrival);
+        }
+    }
+
+    @Test
+    public void testFindFlightsToTXL() {
+        //given
+        FlightFinder flightFinder = new FlightFinder();
+        //when
+        List<Flight> foundFlights = flightFinder.findFlightsTo("TXL");
+        //then
+        assertNotEquals(0, foundFlights.size());
+        for (Flight flight : foundFlights) {
+            assertEquals("TXL", flight.arrival);
+        }
+    }
+
+    @Test
+    public void testFindFlightsToJFK() {
+        //given
+        FlightFinder flightFinder = new FlightFinder();
+        //when
+        List<Flight> foundFlights = flightFinder.findFlightsTo("JFK");
+        //then
+        assertNotEquals(0, foundFlights.size());
+        for (Flight flight : foundFlights) {
+            assertEquals("JFK", flight.arrival);
+        }
     }
 
     @Test
     public void testFindFlightsFrom() {
-        Flight flight = new Flight("WAW", "TXL");
-        assertEquals("WAW", flight.getDeparture());
+        //given
+        FlightFinder flightFinder = new FlightFinder();
+        //when
+        List<Flight> foundFlights = flightFinder.findFlightsFrom("WAW");
+        //then
+        assertNotEquals(0, foundFlights.size());
+        for (Flight flight : foundFlights) {
+            assertEquals("WAW", flight.departure);
+        }
     }
 
     @Test
-    public void testCheckIfFlightFinderShowsAllFlightsFromTheAirport() {
+    public void testCheckIfFlightFinderShowsNoResultsWhenArrivalAirportIsNull() {
 
         FlightFinder flight = new FlightFinder();
-        assertEquals(4, flight.findFlightsFrom("WAW"));
+        assertEquals(0, flight.findFlightsTo(null));
     }
 
     @Test
-    public void testCheckIfFlightFinderShowsAllFlightsToTheAirport() {
+    public void testCheckIfFlightFinderShowsNoResultsWhenDepartureAirportIsNull() {
 
         FlightFinder flight = new FlightFinder();
-        assertEquals(1, flight.findFlightsTo("FCO"));
+        assertEquals(0, flight.findFlightsFrom(null));
     }
 
     @Test
-    public void testCheckIfThereIsNullWhenArrivalFieldIsEmpty() {
+    public void testCheckIfFlightFinderShowsNoResultWhenThereIsNoFlightToTheDestination() {
 
-        Flight flight = new Flight("WAW", null);
-        assertNull("this field is null", flight.getArrival());
+        FlightFinder flight = new FlightFinder();
+        assertEquals(null, flight.findFlightsTo("HAM"));
     }
 
     @Test
-    public void testCheckIfThereIsNullWhenDepartureFieldIsEmpty() {
+    public void testCheckIfFlightFinderShowsNoResultWhenDepartureAirportNameIsWrong() {
 
-        Flight flight = new Flight(null, "DUB");
-        assertNull("this field is null", flight.getDeparture());
+        FlightFinder flight = new FlightFinder();
+        assertEquals(null, flight.findFlightsFrom("WAWW"));
     }
 
     @Test
-    public void testCheckIfThereIsNullWhenThereIsNoFlightToTheDestination() {
+    public void testCheckIfFlightFinderShowsNoResultWhenArrivalIsEmptyString() {
 
-        Flight flight = new Flight("WAW", "SYD");
-        assertNull("this fields is null", null);
+        FlightFinder flight = new FlightFinder();
+        assertEquals(null, flight.findFlightsTo(" "));
     }
 
     @Test
-    public void testCheckIfThereIsNullWhenTheAirportNameIsWrong() {
+    public void testCheckIfFlightFinderShowsNoResultWhenDepartureIsEmptyString() {
 
-        Flight flight = new Flight("WAAW", "TXL");
-        assertNull("this field is null", flight.getArrival());
+        FlightFinder flight = new FlightFinder();
+        assertEquals(null, flight.findFlightsFrom(" "));
     }
 }

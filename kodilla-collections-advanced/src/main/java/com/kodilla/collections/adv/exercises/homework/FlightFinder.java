@@ -7,7 +7,7 @@ public class FlightFinder {
 
     private static List<Flight> flights;
 
-    public int findFlightsFrom(String departure) {
+    public List<Flight> findFlightsFrom(String departure) {
         flights = FlightRepository.getFlightsTable();
         List<Flight> flightsDeparture = new ArrayList<>();
         int fligSiz = flights.size();
@@ -15,13 +15,15 @@ public class FlightFinder {
         Flight flight = flights.get(i);
         if (flight.departure.equals(departure)) {
             flightsDeparture.add(flight);
+            }
         }
-    }
-        int depSize = flightsDeparture.size();
-        return depSize;
+        if (flightsDeparture.size() == 0) {
+            return flightsDeparture = null;
+        }
+        return flightsDeparture;
     }
 
-    public int findFlightsTo(String arrival) {
+    public List<Flight> findFlightsTo(String arrival) {
         flights = FlightRepository.getFlightsTable();
         List<Flight> flightsArrival = new ArrayList<>();
         int fligSiz = flights.size();
@@ -31,7 +33,9 @@ public class FlightFinder {
                 flightsArrival.add(flight);
             }
         }
-        int arrSize = flightsArrival.size();
-        return arrSize;
+        if (flightsArrival.size() == 0) {
+            return flightsArrival = null;
+        }
+        return flightsArrival;
     }
 }
