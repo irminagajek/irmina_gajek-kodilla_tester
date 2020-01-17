@@ -18,7 +18,7 @@ public class FlightFinder {
             }
         }
         if (flightsDeparture.size() == 0) {
-            return flightsDeparture = null;
+            return flightsDeparture = new ArrayList<>();
         }
         return flightsDeparture;
     }
@@ -34,7 +34,7 @@ public class FlightFinder {
             }
         }
         if (flightsArrival.size() == 0) {
-            return flightsArrival = null;
+            return flightsArrival = new ArrayList<>();
         }
         return flightsArrival;
     }
