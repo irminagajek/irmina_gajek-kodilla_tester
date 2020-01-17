@@ -13,8 +13,6 @@ public class Application {
         students.add(new Student("John ", null));
         students.add(new Student("Ron ", null));
 
-        String name = Teacher.getName().orElse("<undefined>");
-
         for (Student student : students)
             System.out.println("student: " + student.getName() + "teacher: " + student.getTeacher().name);
     }
