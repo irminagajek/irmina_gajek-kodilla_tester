@@ -4,28 +4,27 @@ import java.util.Optional;
 
 public class Student {
     String name;
-    Teacher teacher;
+    Optional<Teacher> teacher;
 
     public Student(String name, Teacher teacher) {
-     Optional<Teacher> optionalTeacher = Optional.ofNullable(teacher);
-     Teacher teacherName = optionalTeacher.orElse(new Teacher("<undefined>"));
-       this.name = name;
-       this.teacher = teacherName;
+        this.name = name;
+        this.teacher = Optional.ofNullable(teacher);
+    }
+
+    public Optional<Teacher> getTeacher() {
+
+        return teacher;
     }
 
     public String getName() {
         return name;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
                 "name='" + name + '\'' +
-                ", teacher=" + teacher.getName() +
+                ", teacher=" + teacher +
                 '}';
     }
 }
