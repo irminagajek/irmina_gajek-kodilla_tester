@@ -2,30 +2,29 @@ package com.kodilla.exception.homework;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Warehouse {
 
-    public static List<Order> getOrderList() {
-        List<Order> orders = new ArrayList<>();
+    List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrderList() {
         return orders;
     }
 
-    public static void addOrder(Order order) {
-        List<Order> orders = new ArrayList<>();
-        orders.add(new Order(order.toString()));
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
-    public static Order getOrder(String number) throws OrderDoesntExistException {
-        Warehouse.getOrderList()
-                .stream()
-                .filter(o -> o.getNumber().equals(number));
-              //  .forEach(os -> System.out.println(os));
-        return getOrder(number);
-    }
+   public Optional<Order> getOrder(String number) throws OrderDoesntExistException {
 
-    public static Order getFilteredOrders(String number) throws OrderDoesntExistException {
-    if (getOrderList().contains(number))
-            return getOrderList().get(Integer.parseInt(number));
-        throw new OrderDoesntExistException();
-    }
+  Optional<Order> orderNr = orders.stream().filter(x -> x.getNumber().equals(number)).findFirst().orElseThrow(() -> new OrderDoesntExistException);
+  return orderNr;
+ }
+
+//    public Order getFilteredOrders(String number) throws OrderDoesntExistException {
+//    if (getOrderList().contains(number))
+//            return getOrderList().get(Integer.parseInt(number));
+//        throw new OrderDoesntExistException();
+//    }
 }
