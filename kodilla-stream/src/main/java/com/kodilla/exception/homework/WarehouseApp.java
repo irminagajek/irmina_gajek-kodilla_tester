@@ -16,7 +16,10 @@ public class WarehouseApp {
 
         System.out.println(warehouse.getOrderList());
 
-        System.out.println(warehouse.getOrder("6"));
-
+        try {
+            System.out.println(warehouse.getOrder("6"));
+        } catch (OrderDoesntExistException e) {
+            System.out.println("Order not found.");
+        }
     }
 }
