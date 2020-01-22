@@ -1,7 +1,7 @@
 package com.kodilla.parametrized_tests.homework;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.Assert.assertFalse;
@@ -11,70 +11,37 @@ public class UserValidatorTestSuite {
 
     private UserValidator userValidator = new UserValidator();
 
-    @Test
-    public void shouldReturnTrueIfUsernameContainsThreeSigns() {
-        boolean result = userValidator.validateUsername("Ann");
+    @ParameterizedTest
+    @ValueSource(strings = {"Ann", "penguin", "DONALD", "20041990", "ann.black", "ann-green", "harry_potter"})
+    public void shouldReturnTrueForUsernameMeetingTheRequirements(String username) {
+        boolean result = userValidator.validateUsername(username);
         assertTrue(result);
     }
 
-    @Test
-    public void shouldReturnTrueIfUsernameContainsLowerCase() {
-        boolean result = userValidator.validateUsername("penguin");
-        assertTrue(result);
-    }
-
-    @Test
-    public void shouldReturnTrueIfUsernameContainsUpperCase() {
-        boolean result = userValidator.validateUsername("DONALD");
-        assertTrue(result);
-    }
-
-    @Test
-    public void shouldReturnTrueIfUsernameContainsDigits() {
-        boolean result = userValidator.validateUsername("20041990");
-        assertTrue(result);
-    }
-
-    @Test
-    public void shouldReturnTrueIfUsernameContainsDot() {
-        boolean result = userValidator.validateUsername("ann.black");
-        assertTrue(result);
-    }
-
-    @Test
-    public void shouldReturnTrueIfUsernameContainsDash() {
-        boolean result = userValidator.validateUsername("ann-green");
-        assertTrue(result);
-    }
-
-    @Test
-    public void shouldReturnTrueIfUsernameContainsUnderline() {
-        boolean result = userValidator.validateUsername("harry_potter");
-        assertTrue(result);
-    }
-
-    @Test
-    public void shouldReturnFalseIfUsernameContainsLessThanThreeSigns() {
-        boolean result = userValidator.validateUsername("an");
-        assertFalse(result);
-    }
-
-    @Test
-    public void shouldReturnFalseIfUserNameContainsBracket() {
-        boolean result = userValidator.validateUsername("pijany(zajac");
-        assertFalse(result);
-    }
-
-    @Test
-    public void shouldReturnFalseIfUserNameContainsSpace() {
-        boolean result = userValidator.validateUsername("Wiedz min");
+    @ParameterizedTest
+    @ValueSource(strings = {"an", "pijany(zajac", "Wiedz min"})
+    public void shouldReturnFalseForUsernameNotMeetingTheRequirements(String username) {
+        boolean result = userValidator.validateUsername(username);
         assertFalse(result);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Ann", "penguin", "DONALD", "20041990", "ann.black", "ann-green", "harry_potter"})
-    public void shouldReturnTrueForUserNamesMeetingTheRequirements(String username) {
-        boolean result = userValidator.validateUsername(username);
+    @ValueSource(strings = {"irmina.20@wp.pl", "irmi-na@op.pl", "irmi_90@gmail.com"})
+    public void shouldReturnTrueIfEmailMeetingTheRequirements(String email) {
+        boolean result = userValidator.validateEmail(email);
         assertTrue(result);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"irmiwp.pl", "irmi@wppl"})
+    public void shouldReturnFalseIfEmailNotMeetingTheRequirements(String email) {
+        boolean result = userValidator.validateEmail(email);
+        assertFalse(result);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    public void shouldReturnFalseIfEmailIsNull(String email) {
+        assertFalse(userValidator.validateEmail(email));
     }
 }
