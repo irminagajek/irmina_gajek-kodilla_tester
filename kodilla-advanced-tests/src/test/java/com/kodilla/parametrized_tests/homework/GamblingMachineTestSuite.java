@@ -36,7 +36,7 @@ public class GamblingMachineTestSuite {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/userNumbers1.csv")
-    public void shouldThrowExceptionIfValidatedNumbersAreLessThanSix(String no1, String no2, String no3) throws InvalidNumbersException {
+    public void shouldThrowExceptionIfValidatedNumbersAreLessThanSix(String no1, String no2, String no3) {
         //given
         GamblingMachine gamblingMachine = new GamblingMachine();
 
@@ -46,10 +46,9 @@ public class GamblingMachineTestSuite {
                 .map(Integer::parseInt)
                 .collect(Collectors.toSet());
         //when
-        int howManyWins = gamblingMachine.howManyWins(setOfInteger);
         //then
-        assertThrows(NullPointerException.class, () -> {
-            Integer.parseInt("/userNumbers1.csv");
+        assertThrows(InvalidNumbersException.class, () -> {
+            gamblingMachine.howManyWins(setOfInteger);
         });
     }
 
