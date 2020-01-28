@@ -4,9 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ShopTestSuite {
 
@@ -19,9 +21,9 @@ class ShopTestSuite {
 
     @Test
     public void shouldReturnFalseWhenValueIsEmpty() {
-        //When
-        boolean result = shop.addOrder(new Order(null, LocalDate.of(2020, 1, 12), "Donald"));
-        //Then
+        //when
+        boolean result = shop.addOrder(new Order(0, LocalDate.of(2020, 1, 12), "Donald"));
+        //then
         assertFalse(result);
     }
 
@@ -36,7 +38,7 @@ class ShopTestSuite {
     @Test
     public void shouldReturnFalseWhenLoginIsEmpty() {
         //When
-        boolean result = shop.addOrder(new Order(230.45, LocalDate.of(2019, 9, 20), null));
+        boolean result = shop.addOrder(new Order(230.45, LocalDate.of(2019, 9, 20),null));
         //Then
         assertFalse(result);
     }
@@ -46,27 +48,39 @@ class ShopTestSuite {
         //When
         int numberOfOrders = shop.getSize();
         //Then
-        assertEquals(5, numberOfOrders);
+        assertNotEquals(0, numberOfOrders);
     }
 
 @Test
     public void shouldReturnOrdersBetweenDates() throws OrderNotFoundException {
-    List<LocalDate> orders = shop.returnOrdersBasedOnDates(LocalDate.of(2019, 11, 30),
+    List<Order> orders = shop.returnOrdersBasedOnDates(LocalDate.of(2019, 11, 30),
             LocalDate.of(2020, 1, 12));
     assertNotEquals(0, orders.size());
+    for (Order ordersByDate :orders){
+        assertTrue(ordersByDate.dateOfIssue.isAfter(LocalDate.of(2019, 11,30)) && ordersByDate.dateOfIssue.isBefore(LocalDate.of(2020, 1, 12)));
+    }
 }
 
 @Test
 public void shouldReturnOrdersBetweenValues() throws OrderNotFoundException {
-        List<Order> values = (List<Order>) shop.getOrderBasedOnValues(100.00, 400.00);
-        assertNotEquals(0, values.size() );
+        List<Order> orders = shop.getOrderBasedOnValues(100.00, 400.00);
+        assertNotEquals(0, orders.size());
+        for (Order values : orders){
+            assertTrue(values.getValue() > 100.00 && values.getValue() < 400.00);
+        }
 }
 
-@Test
-public void shouldThrewExceptionWhenThereIsNoResultWithValues() throws OrderNotFoundException {
+    @Test
+    public void shouldReturnEmptyListWhenThereIsNoResultWithValues() {
         List<Order> result = shop.getOrderBasedOnValues(20.00, 50.00);
-        throw new OrderNotFoundException();
-}
+        assertEquals(Collections.emptyList(), shop.getOrderBasedOnValues(20.00, 50.00));
+    }
+
+    @Test
+    public void shouldReturnEmptyListWhenThereIsNoResultWithDates() {
+        List<Order> orders = shop.returnOrdersBasedOnDates(LocalDate.of(2010, 1, 21), LocalDate.of(2020, 1, 22));
+        assertEquals(Collections.emptyList(), shop.returnOrdersBasedOnDates(LocalDate.of(2020, 1, 21), LocalDate.of(2020, 1, 22)));
+    }
 
 @Test
     public void shouldReturnOrdersSize() {
@@ -76,10 +90,11 @@ public void shouldThrewExceptionWhenThereIsNoResultWithValues() throws OrderNotF
 @Test
 public void shouldReturnOrdersValues() {
         double result = shop.getSum();
-        assertEquals(4137.44, shop.getSum());
+        assertEquals(4158.42, shop.getSum(), 0.01);
 }
 
     @BeforeEach
+
     public void initializeShop() {
         shop.addOrder(noOne);
         shop.addOrder(noTwo);
