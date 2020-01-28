@@ -28,7 +28,7 @@ public class GamblingMachineTestSuite {
         //when
         //then
         assertThrows(InvalidNumbersException.class, () -> {
-            int howManyWins = gamblingMachine.howManyWins(setOfInteger);
+            gamblingMachine.howManyWins(setOfInteger);
         });
     }
 
@@ -71,6 +71,6 @@ public class GamblingMachineTestSuite {
         GamblingMachine gamblingMachine = new GamblingMachine();
         Set<Integer> numbers = Stream.of(1,2,3,4,5,6).collect(Collectors.toSet());
         int number = gamblingMachine.howManyWins(numbers);
-            assertTrue(number >=0 || number <=6);
+            assertTrue(number >=0 && number <=6);
     }
 }
