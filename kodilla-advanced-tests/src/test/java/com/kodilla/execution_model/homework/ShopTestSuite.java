@@ -68,13 +68,13 @@ public void shouldReturnOrdersBetweenValues() throws OrderNotFoundException {
     @Test
     public void shouldReturnEmptyListWhenThereIsNoResultWithValues() {
         List<Order> result = shop.getOrderBasedOnValues(20.00, 50.00);
-        assertEquals(Collections.emptyList(), shop.getOrderBasedOnValues(20.00, 50.00));
+        assertEquals(Collections.emptyList(), result);
     }
 
     @Test
     public void shouldReturnEmptyListWhenThereIsNoResultWithDates() {
-        List<Order> orders = shop.returnOrdersBasedOnDates(LocalDate.of(2010, 1, 21), LocalDate.of(2020, 1, 22));
-        assertEquals(Collections.emptyList(), shop.returnOrdersBasedOnDates(LocalDate.of(2020, 1, 21), LocalDate.of(2020, 1, 22)));
+        List<Order> orders = shop.returnOrdersBasedOnDates(LocalDate.of(2020, 1, 21), LocalDate.of(2020, 1, 22));
+        assertEquals(Collections.emptyList(), orders);
     }
 
     @Test
