@@ -13,11 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class ShopTestSuite {
 
     Shop shop = new Shop();
-    Order noOne = new Order(120.98, LocalDate.of(2019, 3, 20), "John");
-    Order noTwo = new Order(250.40, LocalDate.of(2019, 8, 12), "Michael");
-    Order noThree = new Order(525.16, LocalDate.of(2020, 1, 20), "Joanna");
-    Order noFour = new Order(2056.34, LocalDate.of(2019, 12, 28), "Rebeca");
-    Order noFive = new Order(1205.54, LocalDate.of(2019, 10, 1), "Alvin");
 
     @Test
     public void shouldReturnFalseWhenValueIsEmpty() {
@@ -82,20 +77,25 @@ public void shouldReturnOrdersBetweenValues() throws OrderNotFoundException {
         assertEquals(Collections.emptyList(), shop.returnOrdersBasedOnDates(LocalDate.of(2020, 1, 21), LocalDate.of(2020, 1, 22)));
     }
 
-@Test
+    @Test
     public void shouldReturnOrdersSize() {
         assertEquals(5, shop.getSize());
 }
 
-@Test
-public void shouldReturnOrdersValues() {
+    @Test
+    public void shouldReturnOrdersValues() {
         double result = shop.getSum();
         assertEquals(4158.42, shop.getSum(), 0.01);
 }
 
     @BeforeEach
-
     public void initializeShop() {
+        Order noOne = new Order(120.98, LocalDate.of(2019, 3, 20), "John");
+        Order noTwo = new Order(250.40, LocalDate.of(2019, 8, 12), "Michael");
+        Order noThree = new Order(525.16, LocalDate.of(2020, 1, 20), "Joanna");
+        Order noFour = new Order(2056.34, LocalDate.of(2019, 12, 28), "Rebeca");
+        Order noFive = new Order(1205.54, LocalDate.of(2019, 10, 1), "Alvin");
+
         shop.addOrder(noOne);
         shop.addOrder(noTwo);
         shop.addOrder(noThree);

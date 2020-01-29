@@ -14,7 +14,7 @@ public class ShopTestSuite2 {
 
     @Test
     public void shouldReturnZeroSizeWhenThereAreNoOrders() {
-        assertEquals(0, shop.getSize());
+        assertEquals(0, orders.size());
     }
 
     @Test
