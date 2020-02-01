@@ -23,4 +23,5 @@ public class ShopTestSuite2 {
         double result = shop.getSum();
         assertEquals(0, result,0.00);
     }
+
 }
