@@ -5,8 +5,11 @@ public class ShippingCenter {
     private DeliveryService deliveryService;
     private NotificationService notificationService;
 
-    public ShippingCenter(DeliveryService deliveryService, NotificationService notificationService) {
+    public ShippingCenter(DeliveryService deliveryService) {
         this.deliveryService = deliveryService;
+    }
+
+    public ShippingCenter(NotificationService notificationService) {
         this.notificationService = notificationService;
     }
 
