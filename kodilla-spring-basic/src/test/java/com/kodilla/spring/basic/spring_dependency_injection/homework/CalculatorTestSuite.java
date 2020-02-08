@@ -12,32 +12,32 @@ public class CalculatorTestSuite {
     @Test
     public void shouldDisplayAddResult() {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic");
-        Display bean = context.getBean(Display.class);
-        double value = bean.display(6 + 2);
-        Assertions.assertNotNull(value);
+        Calculator bean = context.getBean(Calculator.class);
+        double value = bean.add(6,  2);
+        Assertions.assertEquals(8, value);
     }
 
     @Test
     public void shouldDisplaySubtractResult() {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic");
-        Display bean = context.getBean(Display.class);
-        double value = bean.display(6 - 2);
-        Assertions.assertNotNull(value);
+        Calculator bean = context.getBean(Calculator.class);
+        double value = bean.subtract(6, 2);
+        Assertions.assertEquals(4, value);
     }
 
     @Test
     public void shouldDisplayMultiplyResult() {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic");
-        Display bean = context.getBean(Display.class);
-        double value = bean.display(6 * 2);
-        Assertions.assertNotNull(value);
+        Calculator bean = context.getBean(Calculator.class);
+        double value = bean.multiply(6, 2);
+        Assertions.assertEquals(12, value);
     }
 
     @Test
     public void shouldDisplayDivideResult() {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic");
-        Display bean = context.getBean(Display.class);
-        double value = bean.display(6 / 2);
-        Assertions.assertNotNull(value);
+        Calculator bean = context.getBean(Calculator.class);
+        double value = bean.divide(6, 2);
+        Assertions.assertEquals(3, value);
     }
 }
