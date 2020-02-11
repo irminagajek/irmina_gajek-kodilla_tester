@@ -7,11 +7,15 @@ import org.springframework.context.annotation.Configuration;
 public class CarApplication {
 
     @Bean
+    public String season() {
+    return "zima";
+    }
+
+    @Bean
     public Car chooseCar(String season) {
         String spring = "wiosna";
         String winter = "zima";
         String autumn = "jesień";
-        String summer = "lato";
 
         Car car;
         if (season == spring || season == autumn) {
