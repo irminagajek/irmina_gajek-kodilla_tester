@@ -19,7 +19,6 @@ public  class BookService {
     }
 
     public void removeBook(BookDto bookDto) {
-        BookDto book = new BookDto();
-        books.remove(book);
+        books.remove(bookDto);
     }
 }

@@ -27,7 +27,7 @@ class BookController {
     }
 
     @DeleteMapping
-    public void removeBook(@RequestBody BookDto book) {
-        bookService.removeBook(book);
+    public void removeBook(BookDto bookDto) {
+        bookService.removeBook(bookDto);
     }
 }
