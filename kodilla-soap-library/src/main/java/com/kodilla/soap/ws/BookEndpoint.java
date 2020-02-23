@@ -2,7 +2,7 @@ package com.kodilla.soap.ws;
 
 import com.kodilla.books.soap.GetBookRequest;
 import com.kodilla.books.soap.GetBookResponse;
-import com.kodilla.soaplibrary.repository.BooksRepository;
+import com.kodilla.soap.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

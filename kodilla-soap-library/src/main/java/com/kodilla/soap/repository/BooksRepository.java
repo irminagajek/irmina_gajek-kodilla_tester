@@ -1,4 +1,4 @@
-package com.kodilla.soaplibrary.repository;
+package com.kodilla.soap.repository;
 
 import com.kodilla.books.soap.Book;
 import com.kodilla.books.soap.LiteraryGenre;
