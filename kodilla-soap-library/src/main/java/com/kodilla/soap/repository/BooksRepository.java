@@ -20,7 +20,6 @@ public class BooksRepository {
         book1.setSignature("654");
         book1.setTitle("Knife");
         book1.setAuthor("Jo Nesbo");
-     //   book1.setYear(2019);
         book1.setGenre(LiteraryGenre.CRIME);
 
         books.put(book1.getSignature(), book1);
@@ -29,7 +28,6 @@ public class BooksRepository {
         book2.setSignature("342");
         book2.setTitle("Preacher");
         book2.setAuthor("Camilla Lackberg");
-       // book2.setYear(2017);
         book2.setGenre(LiteraryGenre.CRIME);
 
         books.put(book2.getSignature(), book2);
@@ -38,7 +36,6 @@ public class BooksRepository {
         book3.setSignature("786");
         book3.setTitle("Instytut");
         book3.setAuthor("Stephen King");
-        //book3.setYear(2018);
         book3.setGenre(LiteraryGenre.SCI_FI);
 
         books.put(book3.getSignature(), book3);
@@ -47,7 +44,6 @@ public class BooksRepository {
         book4.setSignature("452");
         book4.setTitle("Wiedźmin");
         book4.setAuthor("Andrzej Sapkowski");
-        //book4.setYear(1994);
         book4.setGenre(LiteraryGenre.FANTASY);
 
         books.put(book4.getSignature(), book4);

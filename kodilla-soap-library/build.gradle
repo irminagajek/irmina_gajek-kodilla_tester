@@ -56,7 +56,7 @@ task genJaxb {
 
 
 bootJar {
-    baseName = "kodilla-soap-library"
+    baseName = "kodilla-soap"
     version = "1.0.0"
     from genJaxb.classesDir
 }

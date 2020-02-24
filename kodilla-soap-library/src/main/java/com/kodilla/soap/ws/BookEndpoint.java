@@ -24,11 +24,8 @@ public class BookEndpoint {
     @ResponsePayload
     public GetBookResponse getBook(@RequestPayload GetBookRequest request) {
         GetBookResponse response = new GetBookResponse();
-        response.setBook(booksRepository.findBook(request.getName()));
+        response.setBook(booksRepository.findBook(request.getSignature()));
 
         return response;
     }
-
-
-
-}
+    }
