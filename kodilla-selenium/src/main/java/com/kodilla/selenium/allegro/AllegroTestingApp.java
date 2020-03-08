@@ -19,5 +19,6 @@ public class AllegroTestingApp {
         Select categorySelect = new Select(selectField);
         categorySelect.selectByIndex(3);
         driver.findElement(By.xpath("//button[@class='_d25db_1t06j _13q9y _8tsq7 _1q2ua']")).click();
+        driver.quit();
     }
 }
