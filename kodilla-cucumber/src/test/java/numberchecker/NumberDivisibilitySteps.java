@@ -10,28 +10,8 @@ public class NumberDivisibilitySteps implements En {
 
         public NumberDivisibilitySteps() {
 
-            Given("the number is 43", () -> {
-                this.number = 43;
-            });
-
-            Given("the number is 25", () -> {
-                this.number = 25;
-            });
-
-            Given("the number is 12", () -> {
-                this.number = 12;
-            });
-
-            Given("the number is 15", () -> {
-                this.number = 15;
-            });
-
-            Given("the number is 0", () -> {
-                this.number = 0;
-            });
-
-            Given("the number is -6", () -> {
-                this.number = -6;
+            Given("the number is {int}", (Integer n) -> {
+                this.number = n;
             });
 
             When("I ask whether it's divisible by {int}", (Integer) -> {
