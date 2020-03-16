@@ -7,12 +7,11 @@ Feature: FizzBuzz_algorithm
 
     Examples:
       | number | divisor | answer |
-      |   25   |    3    | "Nope" |
+      |   43   |    3    | "Nope" |
+      |   43   |    5    | "Nope" |
       |   12   |    3    | "Fizz" |
       |   -6   |    3    | "Fizz" |
       |   25   |    5    | "Buzz" |
-      |   12   |    5    | "Nope" |
-      |   -6   |    5    | "Nope" |
       |   15   |    3    | "FizzBuzz" |
       |   15   |    5    | "FizzBuzz" |
       |   0    |    3    | "FizzBuzz" |

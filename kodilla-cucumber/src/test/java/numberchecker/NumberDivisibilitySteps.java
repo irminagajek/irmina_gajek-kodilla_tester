@@ -10,6 +10,10 @@ public class NumberDivisibilitySteps implements En {
 
         public NumberDivisibilitySteps() {
 
+            Given("the number is 43", () -> {
+                this.number = 43;
+            });
+
             Given("the number is 25", () -> {
                 this.number = 25;
             });
