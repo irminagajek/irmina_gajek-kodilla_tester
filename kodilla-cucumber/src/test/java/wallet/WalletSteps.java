@@ -9,55 +9,22 @@ public class WalletSteps implements En {
     private CashSlot cashSlot = new CashSlot();
 
     public WalletSteps() {
-    Given("I have deposited $200 in my wallet", () -> {
-        wallet.deposit(200);
-            Assert.assertEquals("Incorrect wallet balance", 200, wallet.getBalance());
+    Given("I have deposited ${int} in my wallet", (Integer depositedValue) -> {
+        wallet.deposit(depositedValue);
+            Assert.assertEquals("Incorrect wallet balance", depositedValue.intValue(), wallet.getBalance());
         });
 
-    When("I request $30", () -> {
+    When("I request ${int}", (Integer requestedValue) -> {
         Teller teller = new Teller(cashSlot);
-        teller.withdraw(wallet, 30);
+        teller.withdraw(wallet, requestedValue);
     });
 
-        When("I request $1", () -> {
-            Teller teller = new Teller(cashSlot);
-            teller.withdraw(wallet, 1);
-        });
-
-        When("I request $0", () -> {
-            Teller teller = new Teller(cashSlot);
-            teller.withdraw(wallet, 0);
-        });
-
-        When("I request $300", () -> {
-            Teller teller = new Teller(cashSlot);
-            teller.withdraw(wallet, 300);
-        });
-
-        When("I request $-10", () -> {
-            Teller teller = new Teller(cashSlot);
-            teller.withdraw(wallet, -10);
-        });
-
-
-        Then("$30 should be dispensed", () -> {
-        Assert.assertEquals(30, cashSlot.getContents());
+        Then("${int} should be dispensed", (Integer dispensedValue) -> {
+        Assert.assertEquals(dispensedValue.intValue(), cashSlot.getContents());
     });
 
-        Then("$1 should be dispensed", () -> {
-            Assert.assertEquals(1, cashSlot.getContents());
-        });
-
-        Then("$0 should be dispensed", () -> {
-            Assert.assertEquals(0, cashSlot.getContents());
-        });
-
-        Then("$300 should be dispensed", () -> {
-            Assert.assertEquals(300, cashSlot.getContents());
-        });
-
-        Then("$-10 should be dispensed", () -> {
-            Assert.assertEquals(-10, cashSlot.getContents());
+        Then("The balance of my wallet should be {int}", (Integer walletValue) -> {
+            Assert.assertEquals(walletValue.intValue(), wallet.getBalance());
         });
 
 }

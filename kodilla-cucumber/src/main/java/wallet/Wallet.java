@@ -10,6 +10,17 @@ public class Wallet {
         this.balance += money;
     }
 
+    public int withdraw(int money) {
+        if (balance >= money) {
+            this.balance -= money;
+            return money;
+        } else {
+            int b = this.balance;
+            this.balance = 0;
+            return b;
+        }
+    }
+
     public int getBalance() {
         return balance;
     }
