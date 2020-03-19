@@ -1,9 +1,9 @@
 package wallet;
 
-public class Wallet {
+public class Wallet1 {
     private int balance = 0;
 
-    public Wallet() {
+    public Wallet1() {
     }
 
     public void deposit(int money) {
@@ -15,9 +15,7 @@ public class Wallet {
             this.balance -= money;
             return money;
         } else {
-            int b = this.balance;
-            this.balance = 0;
-            return b;
+            return balance;
         }
     }
 

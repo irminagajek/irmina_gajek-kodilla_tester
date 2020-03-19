@@ -1,6 +1,6 @@
 package wallet;
 
-public class CashSlot {
+public class CashSlot1 {
     private int contents;
 
     public int getContents() {
