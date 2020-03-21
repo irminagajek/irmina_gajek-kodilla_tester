@@ -15,7 +15,9 @@ public class Wallet1 {
             this.balance -= money;
             return money;
         } else {
-            return balance;
+            int b = this.balance;
+            this.balance = 0;
+            return b;
         }
     }
 

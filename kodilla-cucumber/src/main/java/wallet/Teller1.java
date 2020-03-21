@@ -11,8 +11,9 @@ public class Teller1 {
         if (amount < wallet1.getBalance()) {
             int actualWithdraw = wallet1.withdraw(amount);
             cashSlot1.dispense(actualWithdraw);
+            cashSlot1.setDisplay("Funds were dispensed");
         } else {
-            System.out.println("I have insufficient funds in my account");
+            cashSlot1.setDisplay("You have insufficient funds in your account");
         }
     }
 }
