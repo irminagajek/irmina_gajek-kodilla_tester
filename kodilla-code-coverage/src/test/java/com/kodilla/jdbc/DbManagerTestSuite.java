@@ -64,12 +64,12 @@ public class DbManagerTestSuite {
         //Given
         DbManager dbManager = DbManager.getInstance();
 
-        String countQuery = "SELECT U.FIRSTNAME, U.LASTNAME, COUNT(*) AS POSTS_NUMBER FROM USERS U JOIN POSTS P ON U.ID = P.USER_ID GROUP BY P.USER_ID HAVING COUNT(*) > 1;";
+        String countQuery = "SELECT COUNT(*) FROM USERS WHERE ID IN (SELECT USER_ID FROM POSTS GROUP BY USER_ID HAVING COUNT(*) > 2)";
         Statement statement = dbManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(countQuery);
         int count = 0;
         while (rs.next()) {
-            count = rs.getInt("POSTS_NUMBER");
+            count = rs.getInt("COUNT(*)");
         }
 
         String sql = "INSERT INTO POSTS(USER_ID, BODY) VALUES (1, 'Hello guys!')";
@@ -80,9 +80,17 @@ public class DbManagerTestSuite {
         statement.executeUpdate(sql);
         sql = "INSERT INTO POSTS(USER_ID, BODY) VALUES (4, 'Hello guys!')";
         statement.executeUpdate(sql);
+        sql = "INSERT INTO POSTS(USER_ID, BODY) VALUES (3, 'Hello guys!')";
+        statement.executeUpdate(sql);
+        sql = "INSERT INTO POSTS(USER_ID, BODY) VALUES (3, 'Hello guys!')";
+        statement.executeUpdate(sql);
+        sql = "INSERT INTO POSTS(USER_ID, BODY) VALUES (5, 'Hello guys!')";
+        statement.executeUpdate(sql);
+        sql = "INSERT INTO POSTS(USER_ID, BODY) VALUES (5, 'Hello guys!')";
+        statement.executeUpdate(sql);
 
         //When
-        String sqlQuery = "SELECT U.FIRSTNAME, U.LASTNAME, COUNT(*) AS POSTS_NUMBER FROM USERS U JOIN POSTS P ON U.ID = P.USER_ID GROUP BY P.USER_ID HAVING COUNT(*) > 1";
+        String sqlQuery = "SELECT U.FIRSTNAME, U.LASTNAME, COUNT(*) AS POSTS_NUMBER FROM USERS U JOIN POSTS P ON U.ID = P.USER_ID GROUP BY P.USER_ID HAVING COUNT(*) > 2";
         statement = dbManager.getConnection().createStatement();
         rs = statement.executeQuery(sqlQuery);
 
@@ -94,7 +102,7 @@ public class DbManagerTestSuite {
           counter++;
         }
 
-        int expected = count + 1;
+        int expected = count;
         Assert.assertEquals(expected, counter);
 
         rs.close();
