@@ -21,11 +21,17 @@ public class TaskListRepositoryTestSuite {
 
     @Test
     public void testFindByListName() {
+
+        String listName = "ToDo";
+        String listName2 = "Done";
+        String listName3 = "NextMonth";
+        String listName4 = "In progess";
+
         //Given
-        TaskList taskList = new TaskList("aaa", "bla");
-        TaskList taskList1 = new TaskList("bbb", "agh");
-        TaskList taskList2 = new TaskList("ccc", "fgh");
-        TaskList taskList3 = new TaskList("ddd", "ret");
+        TaskList taskList = new TaskList(listName, "Tasks to do");
+        TaskList taskList1 = new TaskList(listName2, "Tasks done");
+        TaskList taskList2 = new TaskList(listName3, "Tasks not urgent");
+        TaskList taskList3 = new TaskList(listName4, "Tasks in progress");
 
         //When
         taskListRepository.save(taskList);
@@ -34,12 +40,11 @@ public class TaskListRepositoryTestSuite {
         taskListRepository.save(taskList3);
 
         //Then
-        String listName = taskList2.getListName();
+        String listNames = taskList.getListName();
         List<TaskList> readTaskList = taskListRepository.findByListName(listName);
-        Assert.assertEquals(readTaskList.get(0).getListName(), "ccc");
+        Assert.assertEquals(readTaskList.get(0).getListName(), listName);
 
         //CleanUp
-        int id = readTaskList.get(0).getId();
-        taskListRepository.deleteById(id);
+        taskListRepository.deleteAll();
     }
 }
