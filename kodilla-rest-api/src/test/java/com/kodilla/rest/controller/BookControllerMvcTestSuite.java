@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class BookControllerMvcTestSuite {
 
@@ -19,18 +18,15 @@ public class BookControllerMvcTestSuite {
         //given
         BookService bookServiceMock = Mockito.mock(BookService.class);
         BookController bookController = new BookController(bookServiceMock);
+        BookDto book = new BookDto("Nóż", "Jo Nesbo");
         List<BookDto> myBooks = new ArrayList<>();
-        myBooks.add(new BookDto("Nóż", "Jo Nesbo"));
-        myBooks.add(new BookDto("Policja", "Jo Nesbo"));
-        myBooks.add(new BookDto("Pierwszy śnieg", "Jo Nesbo"));
-        Mockito.when(bookServiceMock.getBooks()).thenReturn(myBooks);
+        myBooks.add(book);
 
         //when
-        List<BookDto> result = bookController.getBooks();
+        bookController.addBook(book);
 
         //then
-        assertEquals(result.size(), myBooks.size());
-        assertTrue(result.size() == 3);
+        Mockito.verify(bookServiceMock, Mockito.times(1)).addBook(book);
     }
 
     @Test
