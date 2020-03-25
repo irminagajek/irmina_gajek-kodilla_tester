@@ -20,24 +20,21 @@ public class InvoiceRepositoryTestSuite {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Test
     public void testInvoiceRepositorySave() {
         //Given
-        Product product = new Product(3, "watch");
+        Product product = new Product("watch");
+        productRepository.save(product);
 
-        Item item1 = new Item(1, product, new BigDecimal(120.00), 2, new BigDecimal(240.00));
-        Item item2 = new Item(2, product, new BigDecimal(120.00), 2, new BigDecimal(240.00));
-        Item item3 = new Item(3, product, new BigDecimal(120.00), 2, new BigDecimal(240.00));
+        Item item = new Item(product, new BigDecimal(120.00), 2, new BigDecimal(240.00));
 
-        List<Item> listItems = new ArrayList<>();
-        listItems.add(item1);
-        listItems.add(item2);
-        listItems.add(item3);
-        Invoice invoice = new Invoice(12, "Invoice no 12", listItems);
-        item1.setInvoice(invoice);
-        item2.setInvoice(invoice);
-        item3.setInvoice(invoice);
+        List<Item> items = new ArrayList<>();
+        items.add(item);
+        Invoice invoice = new Invoice("Invoice no 12", items);
+        item.setInvoice(invoice);
 
         //When
         invoiceRepository.save(invoice);
@@ -45,7 +42,9 @@ public class InvoiceRepositoryTestSuite {
 
         //Then
         Assert.assertNotEquals(0, id);
-    }
 
         //Clean up
+        invoiceRepository.deleteById(id);
+        productRepository.deleteAll();
+    }
 }
