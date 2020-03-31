@@ -14,11 +14,11 @@ public class AlertService {
     }
 
     public void addSubscriber(Person person) {
-        this.people.add(person);
+        locationAssignments.forEach((k, v) -> v.add(person));
     }
 
-    public void sendAlert(Alert alert) {
-        this.people.forEach(person -> person.receive("Uwaga!"));
+    public void sendAlert() {
+        locationAssignments.values().forEach(l -> l.forEach(p -> p.receive("Uwaga!")));
     }
 
     public void unsubscribe(Person person, Location location) {
@@ -45,7 +45,11 @@ public class AlertService {
             }
         }
 
-    public void remove(Location location){
+    public void removeLocation (Location location){
     locationAssignments.remove(location);
+    }
+
+    public void addLocation (Location location) {
+        locationAssignments.putIfAbsent(location, new ArrayList<>());
     }
 }
